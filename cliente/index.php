@@ -1,72 +1,73 @@
+<?php require_once '../database/conexion.php'; ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Centro de Natación - Bienvenidos</title>
+    <title>Información para Clientes - Innovex</title>
     <link rel="stylesheet" href="../assets/estilos.css">
 </head>
 <body>
-    <header>
-        <h1>Centro de Natación Innovex</h1>
-        <nav>
-            <ul>
-                <li><a href="#instalaciones">Instalaciones</a></li>
-                <li><a href="#horarios">Horarios</a></li>
-                <li><a href="#promociones">Promociones</a></li>
-                <li><a href="#requisitos">Requisitos</a></li>
-                <li><a href="#reglamento">Reglamento</a></li>
-                <li><a href="../auth/login.php">Iniciar Sesión</a></li>
-            </ul>
-        </nav>
-    </header>
+    <h2>Centro de Natación Innovex</h2>
+    <p>Bienvenido al sitio oficial del centro de natación. Aquí puedes consultar toda la información disponible:</p>
 
-    <section id="instalaciones">
-        <h2>Instalaciones</h2>
-        <div class="galeria">
-            <img src="../assets/img/alberca.jpg" alt="Alberca Olímpica">
-            <img src="../assets/img/gimnasio.jpg" alt="Gimnasio Acuático">
-            <img src="../assets/img/rehabilitacion.jpg" alt="Área de Rehabilitación">
-        </div>
-    </section>
+    <h3>🏛 Instalaciones</h3>
+    <?php
+    $sql = $conn->query("SELECT * FROM instalaciones");
+    foreach ($sql as $i):
+    ?>
+        <h4><?= $i['nombre'] ?></h4>
+        <img src="../assets/img/<?= $i['imagen'] ?>" width="250">
+        <p><?= $i['descripcion'] ?></p>
+    <?php endforeach; ?>
 
-    <section id="horarios">
-        <h2>Horarios</h2>
-        <ul>
-            <li>Lunes: 08:00 - 09:00 → Natación Principiantes</li>
-            <li>Martes: 10:00 - 11:00 → Rehabilitación</li>
-            <li>Miércoles: 09:00 - 10:00 → Competencia Juvenil</li>
-        </ul>
-    </section>
+    <h3>🎉 Promociones</h3>
+    <?php
+    $sql = $conn->query("SELECT * FROM promociones WHERE fecha_fin >= CURDATE()");
+    foreach ($sql as $p):
+    ?>
+        <strong><?= $p['titulo'] ?></strong><br>
+        <p><?= $p['descripcion'] ?> (Del <?= $p['fecha_inicio'] ?> al <?= $p['fecha_fin'] ?>)</p>
+    <?php endforeach; ?>
 
-    <section id="promociones">
-        <h2>Promociones</h2>
-        <ul>
-            <li><strong>Descuento Primavera</strong>: 20% de descuento en inscripción.</li>
-            <li><strong>Mes del Niño</strong>: Gratis la primera clase para menores de 12 años.</li>
-            <li><strong>Combo Familiar</strong>: Inscripción para 3 miembros con precio especial.</li>
-        </ul>
-    </section>
+    <h3>📜 Reglamento</h3>
+    <ul>
+        <?php
+        $sql = $conn->query("SELECT * FROM reglamento");
+        foreach ($sql as $r):
+            echo "<li>" . $r['regla'] . "</li>";
+        endforeach;
+        ?>
+    </ul>
 
-    <section id="requisitos">
-        <h2>Requisitos</h2>
-        <ul>
-            <li>Certificado médico reciente.</li>
-            <li>Traje de baño adecuado.</li>
-            <li>Pago de inscripción al corriente.</li>
-        </ul>
-    </section>
+    <h3>🕐 Horarios</h3>
+    <table border="1">
+        <tr><th>Día</th><th>Inicio</th><th>Fin</th><th>Actividad</th></tr>
+        <?php
+        $sql = $conn->query("SELECT * FROM horarios");
+        foreach ($sql as $h):
+            echo "<tr>
+                    <td>{$h['dia']}</td>
+                    <td>{$h['hora_inicio']}</td>
+                    <td>{$h['hora_fin']}</td>
+                    <td>{$h['actividad']}</td>
+                </tr>";
+        endforeach;
+        ?>
+    </table>
 
-    <section id="reglamento">
-        <h2>Reglamento</h2>
-        <ul>
-            <li>Respetar los horarios asignados.</li>
-            <li>Uso obligatorio de gorra y sandalias.</li>
-            <li>Prohibido correr en el área de alberca.</li>
-        </ul>
-    </section>
+    <h3>🏅 Competencias</h3>
+    <ul>
+        <?php
+        $sql = $conn->query("SELECT * FROM competencias ORDER BY fecha DESC");
+        foreach ($sql as $c):
+            echo "<li><strong>{$c['nombre']}</strong> ({$c['fecha']}) - {$c['descripcion']}</li>";
+        endforeach;
+        ?>
+    </ul>
 
     <footer>
-        <p>&copy; 2025 Centro de Natación Innovex. Todos los derechos reservados.</p>
+        <p><a href="../auth/login.php">🔐 Iniciar sesión</a> | <a href="../index.php">Inicio</a></p>
     </footer>
 </body>
 </html>
