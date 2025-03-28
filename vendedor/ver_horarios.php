@@ -6,6 +6,8 @@ if (!isset($_SESSION['usuario']) || $_SESSION['nivel'] != 'Vendedor') {
     header("Location: ../auth/login.php");
     exit();
 }
+include '../includes/navbar.php';
+
 
 $sql = $conn->query("SELECT * FROM horarios ORDER BY FIELD(dia, 'Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo')");
 $horarios = $sql->fetchAll(PDO::FETCH_ASSOC);

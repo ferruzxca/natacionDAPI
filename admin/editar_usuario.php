@@ -22,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: gestionar_usuarios.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <h2>Editar Usuario</h2>

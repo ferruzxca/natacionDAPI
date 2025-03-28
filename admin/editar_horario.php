@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: gestionar_horarios.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <h2>Editar Horario</h2>

@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: gestionar_reglamento.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <h2>Editar Regla</h2>

@@ -4,6 +4,8 @@ if (!isset($_SESSION['usuario']) || $_SESSION['nivel'] != 'Vendedor') {
     header("Location: ../auth/login.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <!DOCTYPE html>

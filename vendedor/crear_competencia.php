@@ -6,6 +6,8 @@ if (!isset($_SESSION['usuario']) || $_SESSION['nivel'] != 'Vendedor') {
     header("Location: ../auth/login.php");
     exit();
 }
+include '../includes/navbar.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];

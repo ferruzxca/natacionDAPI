@@ -6,6 +6,8 @@ if (!isset($_SESSION['usuario']) || $_SESSION['nivel'] != 'Vendedor') {
     header("Location: ../auth/login.php");
     exit();
 }
+include '../includes/navbar.php';
+
 
 $sql = $conn->query("SELECT * FROM competencias ORDER BY fecha DESC");
 $competencias = $sql->fetchAll(PDO::FETCH_ASSOC);

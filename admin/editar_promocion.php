@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: gestionar_promociones.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <h2>Editar Promoción</h2>

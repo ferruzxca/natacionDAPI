@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: gestionar_instalaciones.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <h2>Editar Instalación</h2>

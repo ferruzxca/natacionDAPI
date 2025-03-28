@@ -6,6 +6,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['nivel'] != 'Administrador') {
     header("Location: ../auth/login.php");
     exit();
 }
+include '../includes/navbar.php';
 
 // Insertar nueva promoción
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

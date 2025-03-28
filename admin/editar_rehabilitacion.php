@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: gestionar_rehabilitacion.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <h2>Editar Sesión de Rehabilitación</h2>

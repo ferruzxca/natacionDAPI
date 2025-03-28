@@ -23,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: gestionar_competencias.php");
     exit();
 }
+include '../includes/navbar.php';
+
 ?>
 
 <h2>Editar Competencia</h2>
